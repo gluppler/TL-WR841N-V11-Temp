@@ -10,9 +10,9 @@
 
 ## Executive Summary
 
-This report proves that anyone with **physical access** to a TP-Link TL-WR841N v11 Wi-Fi router can completely take over the device — install their own software on it, read and change its settings, and use it as a hidden foothold inside the network. The takeover requires **no password, no software exploit, and no special equipment** beyond a small serial cable (about US$3) and a laptop.
+This report proves that anyone with **physical access** to a TP-Link TL-WR841N v11 Wi-Fi router can completely take over the device: install their own software, read and change its settings, and use it as a hidden foothold inside the network. The takeover requires **no password, no software exploit, and no special equipment** beyond a small serial cable (about US$3) and a laptop.
 
-The root cause is that the router's built-in "recovery mode" — a factory feature meant to let owners restore a broken router — is completely **unprotected**. When the router is switched on with the back-panel reset button held down, it will happily download and install whatever software it is told to fetch, with no check on who sent it or whether it is genuine.
+The root cause is that the router's built-in "recovery mode" (a factory feature meant to let owners restore a broken router) is completely **unprotected**. When the router is switched on with the back-panel reset button held down, it will happily download and install whatever software it is told to fetch, with no check on who sent it or whether it is genuine.
 
 **What an attacker can do once they take over the router:**
 - View, record, or redirect internet traffic that flows through it (passwords, financial logins, private data).
@@ -20,7 +20,7 @@ The root cause is that the router's built-in "recovery mode" — a factory featu
 - Brick the device (make it permanently unusable) as a nuisance or as part of a sabotage.
 - Use the device as a pivot point to attack other computers on the network.
 
-**How realistic is this risk?** The attack needs someone to be physically present at the device (roughly one minute of unsupervised access). It is therefore a targeted, deliberate attack — not something that spreads automatically across the internet. Industry scoring tools estimate the probability of this being exploited in the wild within 30 days at roughly **0.05%–0.40%** (low), but they do not change the fact that the consequence — full control of a network device — is **Critical**.
+**How realistic is this risk?** The attack needs someone to be physically present at the device (roughly one minute of unsupervised access). It is therefore a targeted, deliberate attack, not something that spreads automatically across the internet. Industry scoring tools estimate the probability of this being exploited in the wild within 30 days at roughly **0.05%–0.40%** (low), but that does not change the fact that the consequence, full control of a network device, is **Critical**.
 
 **What should you do?** The vendor no longer supports this model, so the durable fix is to **replace the device**. If it must stay in service, keep it in a physically secured location (locked room / cabinet), segment it away from sensitive systems, and do not rely on it as a security boundary.
 
@@ -34,14 +34,14 @@ The root cause is that the router's built-in "recovery mode" — a factory featu
 
 *If you only read one part of this report, read this.*
 
-**The finding in one sentence:** A TP-Link TL-WR841N v11 wireless router can be fully taken over by an attacker who briefly touches the device, using only a $3 wire and a laptop — no passwords, no hacking skills, and no marks left behind.
+**The finding in one sentence:** A TP-Link TL-WR841N v11 wireless router can be fully taken over by an attacker who briefly touches the device, using only a $3 wire and a laptop. No passwords, no hacking skills, and no marks left behind.
 
-**The finding in more detail:** Routers include a maintenance mode intended for owners who accidentally break their router. In this model, that maintenance mode is left wide open. An attacker who presses the reset button while powering the router on causes it to "ask" the network for software to install — and it installs whatever it receives, without checking who sent it. The attacker serves up their own (malicious) software, the router installs it, and the attacker gains complete control ("administrator access") over the device from that point on.
+**The finding in more detail:** Routers include a maintenance mode intended for owners who accidentally break their router. In this model, that maintenance mode is left wide open. An attacker who presses the reset button while powering the router on causes it to "ask" the network for software to install, and it installs whatever it receives without checking who sent it. The attacker serves up their own (malicious) software, the router installs it, and the attacker gains complete control ("administrator access") over the device from that point on.
 
 **Why this matters to a business:**
 1. **Physical access is the only requirement.** Most security controls stop *remote* attacks. They do nothing against someone who can spend a minute alone with a device. A router in a reception area, an unlocked cabinet, or a messy server room is covered by this finding.
 2. **The damage is invisible and persistent.** After the takeover the device looks, and mostly works, normally. It continues to route Wi-Fi and internet traffic, but the attacker controls it. This is a classic place to put a backdoor that no firewall or antivirus will detect.
-3. **It is a one-time cost for the attacker.** Our test performed the whole takeover — setup, transfer, installation, and proof of control — in well under ten minutes.
+3. **It is a one-time cost for the attacker.** Our test performed the whole takeover (setup, transfer, installation, and proof of control) in well under ten minutes.
 
 **What you should do (in order of priority):**
 1. **Replace** this router model, ideally with a current-model device that still receives security updates. This is the only complete fix.
@@ -60,7 +60,7 @@ The root cause is that the router's built-in "recovery mode" — a factory featu
 | **Manufacturer** | TP-Link Technologies Co., Ltd. |
 | **Model** | TL-WR841N |
 | **Hardware Version** | v11.0 |
-| **Serial Number** | [redacted] — S/N `2167895011070 EU/11.0` withheld; refer to back sticker image |
+| **Serial Number** | [redacted]; S/N `2167895011070 EU/11.0` withheld; refer to back sticker image |
 | **FCC ID** | **TE7WR841NXV11** (printed on rear label) |
 | **IC (ISED, Canada)** | **8853A-WR841NXV11** (label transcription `8853A-WR841NX`) |
 | **Certification** | FCC ID + IC printed on rear label; CE marking on PCB silkscreen |
@@ -72,8 +72,8 @@ The root cause is that the router's built-in "recovery mode" — a factory featu
 | **Test Firmware** | LEDE 17.01.4 (Linux 4.4.92, r3560-79f57e422d) |
 | **Ethernet Switch** | Qualcomm S27 (LAN: eth0/GMAC0, WAN: eth1/GMAC1) |
 | **WiFi** | 2.4GHz 802.11n (300 Mbps, radio0); default SSID `TP-LINK_05C6` (last 4 hex of label MAC) |
-| **MAC Address (label)** | 98-DE-D0-D4-05-C6 — factory MAC printed on rear label; base for default SSID |
-| **MAC Address (U-Boot env)** | ba:be:fa:ce:08:41 — placeholder MAC used by U-Boot for eth0/eth1 (differs from label MAC; SSID derives from label MAC) |
+| **MAC Address (label)** | 98-DE-D0-D4-05-C6; factory MAC printed on rear label; base for default SSID |
+| **MAC Address (U-Boot env)** | ba:be:fa:ce:08:41; placeholder MAC used by U-Boot for eth0/eth1 (differs from label MAC; SSID derives from label MAC) |
 | **Power Supply** | 9 V DC, 0.6 A (label: 9V ≈ 0.6A) |
 | **Default Access** | http://tplinkwifi.net → 192.168.0.1, admin/admin (default, [redacted] in evidence) |
 | **LAN IP (stock)** | 192.168.0.1/24 |
@@ -113,14 +113,14 @@ The root cause is that the router's built-in "recovery mode" — a factory featu
 
 ### 1.1.1 Unit Identification — Back / Specification Sticker
 
-The device's information sticker on the underside of the case is the primary source of unit identification. It carries the model name (TL-WR841N), hardware version (v11), full FCC ID (**TE7WR841NXV11**), IC number (**8853A-WR841NX**, canonical ISED form `8853A-WR841NXV11`), power rating (9 V ≈ 0.6 A), default-access details (http://tplinkwifi.net → 192.168.0.1, admin/admin), serial number, factory MAC (**98-DE-D0-D4-05-C6**), default wireless password/PIN, and default SSID (`TP-LINK_05C6` — derived from the last four hex digits of the label MAC).
+The device's information sticker on the underside of the case is the primary source of unit identification. It carries the model name (TL-WR841N), hardware version (v11), full FCC ID (**TE7WR841NXV11**), IC number (**8853A-WR841NX**, canonical ISED form `8853A-WR841NXV11`), power rating (9 V ≈ 0.6 A), default-access details (http://tplinkwifi.net → 192.168.0.1, admin/admin), serial number, factory MAC (**98-DE-D0-D4-05-C6**), default wireless password/PIN, and default SSID (`TP-LINK_05C6`, derived from the last four hex digits of the label MAC).
 
 > **IMAGE PLACEHOLDER:** `scripts/images/router_back_sticker_redacted.jpg`
 > *Under-casing specification sticker. Sensitive fields (serial number, full MAC, default credentials, wireless password/PIN) redacted in the source photo; FCC ID, IC, model, and power rating left readable.*
 
-The FCC ID is directly queryable in the **FCC OET authorization database** (`https://fcc.report` / `https://apps.fcc.gov/oetcf/eas/reports/GenericSearch.cfm`) using `TE7WR841NXV11`, and the IC in the ISED (Innovation, Science and Economic Development Canada) database using `8853A-WR841NXV11`. Verification performed 2026-09-10 confirms the grant: **TP-Link Technologies Co., Ltd.**, application `WR841NXV11` — "300Mbps Wireless N Router", DTS (Digital Transmission System, 2412–2462 MHz), **granted 2015-11-25**, test firm Bureau Veritas (Taoyuan). The FCC application data independently confirms the platform (QCA9533, 2.4 GHz 802.11n) and hardware revision of the unit under test. These certification identifiers are regulatory public records, not secret material — but they give a third-party enumerator an independent confirmation of the exact product (platform, radio, hardware revision) that matches the sticker and the PCB silkscreen markings. CE marking also appears on the PCB silkscreen alongside the FCC/IC numbers.
+The FCC ID is directly queryable in the **FCC OET authorization database** (`https://fcc.report` / `https://apps.fcc.gov/oetcf/eas/reports/GenericSearch.cfm`) using `TE7WR841NXV11`, and the IC in the ISED (Innovation, Science and Economic Development Canada) database using `8853A-WR841NXV11`. Verification performed 2026-09-10 confirms the grant: **TP-Link Technologies Co., Ltd.**, application `WR841NXV11`, sold as a "300Mbps Wireless N Router", DTS (Digital Transmission System, 2412–2462 MHz), **granted 2015-11-25**, test firm Bureau Veritas (Taoyuan). The FCC application data independently confirms the platform (QCA9533, 2.4 GHz 802.11n) and hardware revision of the unit under test. These certification identifiers are regulatory public records, not secret material, but they give a third-party enumerator an independent confirmation of the exact product (platform, radio, hardware revision) that matches the sticker and the PCB silkscreen markings. CE marking also appears on the PCB silkscreen alongside the FCC/IC numbers.
 
-Note: the **factory MAC on the label (98-DE-D0-D4-05-C6)** differs from the MAC U-Boot uses at runtime for eth0/eth1 (`ba:be:fa:ce:08:41`). The default SSID is derived from the *label* MAC, indicating the label MAC is the authoritative factory value; the U-Boot value is a placeholder assigned in the bootloader environment. The label also confirms the well-known default admin credentials (admin/admin) — which the stock firmware leaves active.
+Note: the **factory MAC on the label (98-DE-D0-D4-05-C6)** differs from the MAC U-Boot uses at runtime for eth0/eth1 (`ba:be:fa:ce:08:41`). The default SSID is derived from the *label* MAC, indicating the label MAC is the authoritative factory value; the U-Boot value is a placeholder assigned in the bootloader environment. The label also confirms the well-known default admin credentials (admin/admin), which the stock firmware leaves active.
 
 ### 1.1.2 Exterior Ports & Indicators (Front/Rear Panels)
 
@@ -129,16 +129,16 @@ Note: the **factory MAC on the label (98-DE-D0-D4-05-C6)** differs from the MAC 
 
 | Port / Control | Type | Notes |
 |----------------|------|-------|
-| **ON/OFF** | Rocker power switch | Puts the device in standby — does NOT cut 9 V supply |
+| **ON/OFF** | Rocker power switch | Puts the device in standby; does NOT cut 9 V supply |
 | **POWER** | Barrel DC jack | 9 V DC, 0.6 A (matching label power rating) |
-| **WAN** | 10/100 Ethernet (RJ-45) | WAN uplink — GMAC1/eth1 |
-| **LAN 1–4** | 10/100 Ethernet (RJ-45) | LAN ports over the internal S27 switch — GMAC0/eth0 |
+| **WAN** | 10/100 Ethernet (RJ-45) | WAN uplink (GMAC1/eth1) |
+| **LAN 1–4** | 10/100 Ethernet (RJ-45) | LAN ports over the internal S27 switch (GMAC0/eth0) |
 | **WPS/RESET** | Tactile button | Factory-reset / WiFi-protected-setup. Long-press during power-on sets `is_auto_upload_firmware=1` → U-Boot TFTP recovery |
 | **WIFI ON/OFF** | Slide switch | Radio enable/disable (hardware kill switch) |
 
 ### 1.1.3 Printed Circuit Board — Component Walkthrough
 
-Board base, top surface, shield cans removed/reflected where present (teardown photographed from both ends — UART header pins on left/right of frame):
+Board base, top surface, shield cans removed/reflected where present (teardown photographed from both ends; UART header pins on left/right of frame):
 
 > **IMAGE PLACEHOLDER:** `scripts/images/pcb_annotated.png`
 > *Base PCB after teardown, two angles with component callouts. Annotated highlights:*
@@ -153,14 +153,14 @@ Board base, top surface, shield cans removed/reflected where present (teardown p
 | **6** | S27 Ethernet switch block | Integral to QCA9533 | LAN ports via transformer, WAN uses GMAC1 |
 | **7** | DC input + regulators | — | 9 V feed, 3.3 V/1.8 V rail generation |
 
-The UART header is left populated on the production board — no depopulation, no solder-mask silkscreen removal, no requirement to solder for an attacker (pins are exposed through holes).
+The UART header is left populated on the production board: no depopulation, no solder-mask silkscreen removal, and no soldering required for an attacker (pins are exposed through holes).
 
 ### 1.1.4 UART Hook-Up (No-Solder Method)
 
 > **IMAGE PLACEHOLDER:** `scripts/images/uart_cp2102_hooked.jpg`
-> *CP2102 USB-UART adapter leaned against the exposed UART pins, held in place by friction — no soldering performed.*
+> *CP2102 USB-UART adapter leaned against the exposed UART pins, held in place by friction; no soldering was performed.*
 
-Connect as follows — **the CP2102 is not soldered**; the header pins are long enough that the adapter's female jumper leads grip the pins by friction alone during the whole test:
+Connect as follows. **The CP2102 is not soldered**; the header pins are long enough that the adapter's female jumper leads grip the pins by friction alone during the whole test:
 
 | CP2102 (USB-UART) | Router UART header (bottom→top: TX, RX, GND) |
 |-------------------|---------------------------------------------|
@@ -169,7 +169,7 @@ Connect as follows — **the CP2102 is not soldered**; the header pins are long 
 | GND | GND pin (top) |
 | 3V3 / VCC | **NOT CONNECTED** (router self-powered) |
 
-Board runs at 3.3 V TTL levels — matches CP2102 natively, no level shifter required.
+Board runs at 3.3 V TTL levels, which matches the CP2102 natively; no level shifter is required.
 
 ---
 
@@ -205,8 +205,8 @@ Board runs at 3.3 V TTL levels — matches CP2102 natively, no level shifter req
 | **Target Device** | TP-Link TL-WR841N v11 (stock firmware 160325) |
 | **Serial Adapter** | CP2102 USB-to-UART (3.3 V TTL), no level shifter required |
 | **Host System** | Kali Linux (VMware Workstation 17.5) |
-| **VM Networking** | libvirt bridged (virbr0) — eno1 + vnet2, host-side `ip link set eno1 master virbr0` |
-| **Cabling** | Direct Ethernet host↔router (any wired port — recovery ran over eth0/enet0 port4 in the captured run); LAN for SSH post-flash |
+| **VM Networking** | libvirt bridged (virbr0): eno1 + vnet2, host-side `ip link set eno1 master virbr0` |
+| **Cabling** | Direct Ethernet host↔router (any wired port; the captured recovery ran over eth0/enet0 port4); LAN for SSH post-flash |
 
 ### 3.2 Software Tooling
 
@@ -224,10 +224,10 @@ Board runs at 3.3 V TTL levels — matches CP2102 natively, no level shifter req
 | **hashcat** | password cracker | Stock firmware root hash `$1$GTN.gpri$...` → `admin:admin` |
 | **CyberChef** | web tool | Secondary config-XML decryption confirmation |
 | **JTAGulator / baudrate.py** (referenced) | hardware probing | UART/baud identification methodology (ISTG `INFO-001`) |
-| **pyserial** | python serial | Tested for UART I/O — returned 0 bytes, superseded by `stty` FD | 
+| **pyserial** | python serial | Tested for UART I/O; returned 0 bytes, superseded by `stty` FD | 
 | **moria** v0.1.0 | https://github.com/nmatt0/moria | IoT firmware identification & extraction (binwalk-class). Identifies/unpacks filesystems (SquashFS, JFFS2, UBIFS, ext, …), U-Boot uImage/FIT, archives; `-e` extracts, `-E` entropy. Used to map the stock+LEDE images, `--extract` → rooted tree for mithril |
 | **mithril** v0.1.3 | https://github.com/nmatt0/mithril | IoT static scanner: secrets, SBOM (CycloneDX/SPDX), CVEs (OSV+NVD mirror annotated w/ CISA KEV + EPSS), licenses. Used for the SBOM in §2 and to cross-check component versions/CVEs offline |
-| **PoC pipeline driver** | `tplink_wr841n_v11_root_shell_poc.sh` | Final attack automation — UART → TFTP recovery → SSH root chain (Appendix C). Companion analysis pipeline: `moria -e firmware.bin` → `mithril firmware.bin.extracted/`. Supersedes exploratory scratch scripts (`boot_interrupt.py`, `uart_bruteforce.py`, `ps_log.py`, `cve_test.py`, `cve_test_v2.py`, `pack_fw.sh`) |
+| **PoC pipeline driver** | `tplink_wr841n_v11_root_shell_poc.sh` | Final attack automation: UART → TFTP recovery → SSH root chain (Appendix C). Companion analysis pipeline: `moria -e firmware.bin` → `mithril firmware.bin.extracted/`. Supersedes exploratory scratch scripts (`boot_interrupt.py`, `uart_bruteforce.py`, `ps_log.py`, `cve_test.py`, `cve_test_v2.py`, `pack_fw.sh`) |
 
 ---
 
@@ -239,27 +239,27 @@ Before the hardware path, the stock web interface was probed against the known p
 
 | CVE | Affects v11 | Type | Our Finding |
 |-----|------------|------|-------------|
-| **CVE-2022-30024** | Yes (160325 exact) | Auth RCE — buffer overflow in httpd (Wi-Fi System Tools page) | Testable but **requires authentication**; relies on web daemon bug |
+| **CVE-2022-30024** | Yes (160325 exact) | Auth RCE: buffer overflow in httpd (Wi-Fi System Tools page) | Testable but **requires authentication**; relies on web daemon bug |
 | **CVE-2018-12577** | Yes | Auth command injection via ping/traceroute diagnostics | Requires login + working diagnostics; character escaping observed on SSID inputs |
-| **CVE-2018-12575** | Yes | Auth bypass via Referer header | Referer prefix check (`strncmp`) is weak — usable for XSRF-style flows |
-| **CVE-2025-53711..53715** | v11-era, 2026 disclosure | Buffer overflow in `.htm` pages (WlanNetworkRpm, Wan6to4TunnelCfg) | DoS only — crashes httpd, no RCE |
+| **CVE-2018-12575** | Yes | Auth bypass via Referer header | Referer prefix check (`strncmp`) is weak; usable for XSRF-style flows |
+| **CVE-2025-53711..53715** | v11-era, 2026 disclosure | Buffer overflow in `.htm` pages (WlanNetworkRpm, Wan6to4TunnelCfg) | DoS only; crashes httpd, no RCE |
 | **CVE-2025-6151** | v11-era | `WanSlaacCfgRpm.htm` buffer overflow | DoS only |
-| **CVE-2019-17147** | v14 (port-checked on v11) | Host header stack overflow | Not reproducible on v11 — v14 feature |
-| **CVE-2023-39471** | v14 (UDP 20002) | `ated_tp` command injection | Not reproducible on v11 — v14 feature |
-| **CVE-2018-15700 / 15701** | Yes | httpd DoS via Referer / Cookie header | DoS only — crash the portal, no control |
-| **CVE-2018-15702** | Yes | XSRF via incomplete Referer check | Low impact — CSRF on admin UI, chained with auth only |
+| **CVE-2019-17147** | v14 (port-checked on v11) | Host header stack overflow | Not reproducible on v11; v14 feature |
+| **CVE-2023-39471** | v14 (UDP 20002) | `ated_tp` command injection | Not reproducible on v11; v14 feature |
+| **CVE-2018-15700 / 15701** | Yes | httpd DoS via Referer / Cookie header | DoS only; crashes the portal, no control |
+| **CVE-2018-15702** | Yes | XSRF via incomplete Referer check | Low impact; CSRF on admin UI, chained with auth only |
 
-**Decision rationale:** the sole RCE candidate (CVE-2022-30024) demands authenticated access and depends on httpd behavior; the remaining candidates are DoS or v14-only. The hardware path (U-Boot TFTP recovery) yields the same endpoint — root — **without any authentication and without writing to the web attack surface**. It is also model-specific and survives firmware updates on the device (U-Boot is never re-flashed by web updates).
+The web path was set aside because the sole RCE candidate (CVE-2022-30024) demands authenticated access and depends on httpd behavior; the remaining candidates are DoS or v14-only. The hardware path (U-Boot TFTP recovery) yields the same endpoint, root, **without any authentication and without writing to the web attack surface**. It is also model-specific and survives firmware updates on the device (U-Boot is never re-flashed by web updates).
 
 ### 4.1 Root Cause Analysis
 
 The TL-WR841N v11 uses U-Boot 1.1.4 as its bootloader. This version has several critical security deficiencies:
 
-1. **No boot password** — the autoboot delay (`bootdelay=1`) allows interruption via UART without authentication
-2. **No firmware signing** — U-Boot accepts any binary image without cryptographic verification
-3. **No secure boot chain** — no root of trust, no FIT signature, no signed boot stages
-4. **TFTP recovery enabled by default** — the `is_auto_upload_firmware` flag activates TFTP recovery when factory reset is triggered
-5. **Factory reset via physical button** — holding the reset button during power-on sets `is_auto_upload_firmware=1`, enabling the TFTP recovery path
+1. **No boot password**: the autoboot delay (`bootdelay=1`) allows interruption via UART without authentication
+2. **No firmware signing**: U-Boot accepts any binary image without cryptographic verification
+3. **No secure boot chain**: no root of trust, no FIT signature, no signed boot stages
+4. **TFTP recovery enabled by default**: the `is_auto_upload_firmware` flag activates TFTP recovery when factory reset is triggered
+5. **Factory reset via physical button**: holding the reset button during power-on sets `is_auto_upload_firmware=1`, enabling the TFTP recovery path
 
 ### 4.2 U-Boot TFTP Recovery Mechanism
 
@@ -283,7 +283,7 @@ When the device enters recovery mode (via factory reset), U-Boot executes the fo
    k. Reboot into new firmware
 ```
 
-**Critical observation:** The firmware image is accepted without any cryptographic verification. The only check is the product ID match (`wr841nv11_tp_recovery.bin` filename convention), which is trivially spoofed.
+The firmware image is accepted without any cryptographic verification. The only check is the product ID match (`wr841nv11_tp_recovery.bin` filename convention), which is trivially spoofed.
 
 ### 4.3 Network Topology (Attack Setup)
 
@@ -316,7 +316,7 @@ When the device enters recovery mode (via factory reset), U-Boot executes the fo
 
 ### 5.1 UART Wiring & Board Fingerprinting
 
-**Objective:** Establish serial console access and identify hardware.
+**Goal:** establish serial console access and identify the hardware.
 
 **Wiring:**
 | CP2102 Pin | Board Pin | Notes |
@@ -357,7 +357,7 @@ eth1: ba:be:fa:ce:08:41
 
 ### 5.2 Firmware Preparation
 
-**Objective:** Obtain and stage the replacement firmware.
+**Step:** obtain and stage the replacement firmware.
 
 ```bash
 # LEDE 17.01.4 factory image (must match hardware version)
@@ -377,7 +377,7 @@ sha1sum /tmp/tftp/wr841nv11_tp_recovery.bin
 
 ### 5.3 Network Setup (Bridged VM)
 
-**Objective:** Connect the Kali VM to the same Layer-2 network as the router's wired Ethernet port used during recovery. U-Boot will TFTP over whichever wired port has a live link; a direct cable to any router Ethernet port works.
+**Step:** connect the Kali VM to the same Layer-2 network as the router's wired Ethernet port used during recovery. U-Boot will TFTP over whichever wired port has a live link; a direct cable to any router Ethernet port works.
 
 ```bash
 # On Kali host: configure TFTP server IP
@@ -398,7 +398,7 @@ sudo ip link set eno1 master virbr0
 
 ### 5.4 TFTP Server Configuration
 
-**Objective:** Set up TFTP server to serve the firmware image.
+**Step:** set up a TFTP server to serve the firmware image.
 
 ```bash
 # Install and start atftpd
@@ -421,7 +421,7 @@ ls -la /tmp/tftp/wr841nv11_tp_recovery.bin
 
 ### 5.5 Recovery Trigger (Reset Button Procedure)
 
-**Objective:** Trigger U-Boot TFTP recovery mode.
+**Step:** trigger U-Boot TFTP recovery mode.
 
 **Procedure:**
 1. Power off the router (unplug DC adapter)
@@ -464,15 +464,15 @@ Autobooting in 1 seconds
 ```
 
 **Evidence:**
-- `Bytes transferred = 3932160 (3c0000 hex)` — full firmware received (3 MB)
-- `Firmware recovery: product id verify sucess!` — product ID matched, no cryptographic check
-- `Erased 60 sectors` — flash erased (60 × 64 KB = 3,932,160 bytes)
-- `Copy to Flash... write addr: 9f020000` — image written to flash
+- `Bytes transferred = 3932160 (3c0000 hex)`: full firmware received (3 MB)
+- `Firmware recovery: product id verify sucess!`: product ID matched, no cryptographic check
+- `Erased 60 sectors`: flash erased (60 × 64 KB = 3,932,160 bytes)
+- `Copy to Flash... write addr: 9f020000`: image written to flash
 - Recovery downloads over **eth0** (the LAN switch, `enet0 port4 up`) in the captured run; eth1/WAN was down at that moment. U-Boot uses whichever wired interface has a live link.
 
 ### 5.6 Flash Verification
 
-**Objective:** Confirm firmware was written correctly.
+**Step:** confirm the firmware was written correctly.
 
 After the TFTP transfer completes, U-Boot automatically reboots. The new firmware (LEDE 17.01.4) boots:
 
@@ -496,9 +496,9 @@ Please press Enter to activate this console.
 
 ### 5.7 Post-Flash Access (SSH with Legacy KEX)
 
-**Objective:** Establish SSH root session on the compromised device.
+**Goal:** establish an SSH root session on the compromised device.
 
-**Critical quirk:** LEDE 17.01.4's Dropbear SSH server uses legacy key exchange algorithms. Modern OpenSSH clients (10.x) reject these by default. The following workaround is required:
+LEDE 17.01.4's Dropbear SSH server only offers legacy key exchange algorithms, which modern OpenSSH clients (10.x) reject by default. The following workaround is required:
 
 ```bash
 ssh -o KexAlgorithms=diffie-hellman-group14-sha1 \
@@ -521,11 +521,11 @@ Host 192.168.1.1
     StrictHostKeyChecking no
 ```
 
-**Why legacy KEX?** As observed during testing, the LEDE 17.01.4 Dropbear instance only negotiated the legacy SHA-1 key-exchange groups (`diffie-hellman-group14-sha1`, `diffie-hellman-group1-sha1`). Modern OpenSSH clients (9.x/10.x) no longer enable these by default — they prefer `curve25519-sha256` / `ecdh-sha2-nistp256` — so the algorithms must be forced on the command line. The SSH server itself had no password set for root, which is why login succeeded with an empty password.
+During testing the LEDE 17.01.4 Dropbear instance only negotiated the legacy SHA-1 key-exchange groups (`diffie-hellman-group14-sha1`, `diffie-hellman-group1-sha1`). Modern OpenSSH clients (9.x/10.x) no longer enable these by default; they prefer `curve25519-sha256` / `ecdh-sha2-nistp256`, so the algorithms have to be forced on the command line. The SSH server itself had no password set for root, which is why login succeeded with an empty password.
 
 ### 5.8 Root Shell Confirmation
 
-**Objective:** Demonstrate full root access and device control.
+**Step:** demonstrate full root access and device control.
 
 ```bash
 # Verify root identity
@@ -573,7 +573,7 @@ ssh -o KexAlgorithms=diffie-hellman-group14-sha1 \
     -o Ciphers=aes128-ctr \
     -o MACs=hmac-sha1 \
     root@192.168.1.1
-# Still works — root shell persists
+# Still works (root shell persists)
 ```
 
 ---
@@ -672,24 +672,24 @@ DISTRIB_TARGET='ar71xx/generic'
 
 | Test Case | Description | Finding |
 |-----------|-------------|---------|
-| `ISTG-INT[UART]-INFO-001` | UART identification (baud, voltage) | **Confirmed** — 115200 8N1, 3.3V TTL |
-| `ISTG-INT[UART]-AUTHZ-001` | Unauthenticated serial console | **Confirmed** — root shell via UART (stock firmware) |
-| `ISTG-INT[UART]-AUTHZ-002` | Bootloader interrupt via serial console | **Confirmed** — U-Boot autoboot interrupt → TFTP recovery |
-| `ISTG-FW[UPDT]-CRYPT-001` | Missing firmware signature verification | **Confirmed** — unsigned image accepted via TFTP |
-| `ISTG-FW[UPDT]-CRYPT-004` | Improper firmware verification | **Confirmed** — only product ID checked, no crypto |
-| `ISTG-FW[UPDT]-AUTHZ-001` | Unauthorized firmware update | **Confirmed** — no auth required for TFTP recovery |
+| `ISTG-INT[UART]-INFO-001` | UART identification (baud, voltage) | **Confirmed**: 115200 8N1, 3.3V TTL |
+| `ISTG-INT[UART]-AUTHZ-001` | Unauthenticated serial console | **Confirmed**: root shell via UART (stock firmware) |
+| `ISTG-INT[UART]-AUTHZ-002` | Bootloader interrupt via serial console | **Confirmed**: U-Boot autoboot interrupt → TFTP recovery |
+| `ISTG-FW[UPDT]-CRYPT-001` | Missing firmware signature verification | **Confirmed**: unsigned image accepted via TFTP |
+| `ISTG-FW[UPDT]-CRYPT-004` | Improper firmware verification | **Confirmed**: only product ID checked, no crypto |
+| `ISTG-FW[UPDT]-AUTHZ-001` | Unauthorized firmware update | **Confirmed**: no auth required for TFTP recovery |
 
-**ISTG Severity Assessment:** The finding spans multiple test cases, indicating a systemic firmware update security failure.
+**ISTG Severity Assessment:** The finding spans multiple test cases; the firmware update path fails at several independent checkpoints.
 
 ### 7.2 OWASP FSTM (Firmware Security Testing Methodology)
 
 | Stage | Test Case | Finding |
 |-------|-----------|---------|
-| Stage 2 — Obtaining Firmware | UART extraction, TFTP dump | **Confirmed** — firmware extracted via TFTP recovery |
-| Stage 7 — Bootloader Testing | U-Boot shell access, TFTP recovery | **Confirmed** — full TFTP recovery chain demonstrated |
-| Stage 7 — Firmware Integrity | Verify firmware signature/integrity | **Failed** — no signature verification implemented |
+| Stage 2 — Obtaining Firmware | UART extraction, TFTP dump | **Confirmed**: firmware extracted via TFTP recovery |
+| Stage 7 — Bootloader Testing | U-Boot shell access, TFTP recovery | **Confirmed**: full TFTP recovery chain demonstrated |
+| Stage 7 — Firmware Integrity | Verify firmware signature/integrity | **Failed**: no signature verification implemented |
 
-**FSTM Assessment:** The attack follows the exact Stage 7 bootloader testing procedure documented in the methodology. The device passes firmware without any integrity or authenticity checks.
+**FSTM Assessment:** The attack matches the Stage 7 bootloader testing procedure in the methodology. The device accepts firmware without any integrity or authenticity check.
 
 ### 7.3 OWASP ISVS (IoT Security Verification Standard)
 
@@ -709,7 +709,7 @@ NISTIR 8200 is a standards landscape document, not a prescriptive framework. Rel
 
 - **Section 8.8:** "IoT components may be in remote and unattended locations where physical access is almost unrestricted. Due to their cost model, very low-cost components cannot be protected by physically hardening or adding anti-tamper features."
 - **Standards Gap:** No modern interoperable approach for secure firmware updates in IoT devices → IETF SUIT (Software Updates for IoT) identified as emerging standard.
-- **Relevance:** The TL-WR841N v11 exemplifies the gap identified by NIST — no firmware signing, no secure boot, no rollback protection.
+- **Relevance:** The TL-WR841N v11 exemplifies the gap identified by NIST: no firmware signing, no secure boot, no rollback protection.
 
 ---
 
@@ -728,7 +728,7 @@ NISTIR 8200 is a standards landscape document, not a prescriptive framework. Rel
 | **User Interaction (UI)** | None (N) | Autonomous exploit, no user action required |
 | **Vulnerable System Impact (VC/VI/VA)** | High (H) | Full compromise of the router itself (confidentiality/integrity/availability) |
 | **Scope (S)** | Changed (C) | Compromised device can affect the entire network segment |
-| **Subsequent System Impact (SC/SI/SA)** | High (H) | Router is a network pivot — hosts behind it are reachable/affected |
+| **Subsequent System Impact (SC/SI/SA)** | High (H) | Router is a network pivot; hosts behind it are reachable/affected |
 
 **CVSS 4.0 Score: 8.6 (Critical)**
 
@@ -738,19 +738,19 @@ No exact CVE exists for this specific TFTP recovery vulnerability pattern. Live 
 
 | CVE | EPSS Score | Percentile | CVSS | Description |
 |-----|-----------|------------|------|-------------|
-| **CVE-2023-20198** | 0.99571 (99.57%) | 99.95th | 10.0 | Cisco IOS XE Web UI privilege escalation — mass-exploited |
+| **CVE-2023-20198** | 0.99571 (99.57%) | 99.95th | 10.0 | Cisco IOS XE Web UI privilege escalation; mass-exploited |
 | **CVE-2024-41592** | 0.01397 (1.40%) | 70.82nd | 8.0 | DrayTek Vigor firmware upload stack overflow |
-| **CVE-2026-24088** | 0.00071 (0.07%) | 0.05th | 8.2 | Qualcomm Snapdragon — missing auth for bootloader partition write |
+| **CVE-2026-24088** | 0.00071 (0.07%) | 0.05th | 8.2 | Qualcomm Snapdragon; missing auth for bootloader partition write |
 | **CVE-2018-18558** | 0.00390 (0.39%) | 32.40th | — | ESP-IDF bootloader secure boot bypass (physical) |
 | **CVE-2025-20892** | 0.00208 (0.21%) | 10.96th | — | Samsung bootloader protection mechanism failure (fastboot) |
 
-**Key insight:** Physical-access / bootloader / unsigned-firmware CVEs consistently score EPSS 0.07%–0.39% (0–35th percentile). This is expected because EPSS models exploitation probability in the wild within 30 days — physical access requirements drastically reduce mass exploitation likelihood. Low EPSS does not mean low severity; it means targeted attacks that EPSS systematically undervalues.
+Physical-access / bootloader / unsigned-firmware CVEs consistently score EPSS 0.07%–0.39% (0–35th percentile). That is expected. EPSS predicts mass in-the-wild exploitation over a 30-day window, and a physical-access requirement removes the mass-exploitation factor. Low EPSS here does not mean low severity; it reflects targeted attacks that EPSS systematically undervalues.
 
 **Estimated EPSS for this vulnerability class:** 0.05%–0.40% (0–35th percentile) based on:
 - Physical access requirement (UART + reset button) reduces automated exploitation
 - TFTP recovery is a known attack pattern (documented in OWASP FSTM Stage 7)
 - No public exploit exists for this specific device model
-- Consumer router market — high volume, low per-device targeting
+- Consumer router market: high volume, low per-device targeting
 - CVE-2026-24088 (Qualcomm bootloader unsigned write, CVSS 8.2) is the closest match at 0.07% EPSS
 
 ### 8.3 Risk Rating Summary
@@ -771,28 +771,28 @@ No exact CVE exists for this specific TFTP recovery vulnerability pattern. Live 
 
 | # | Recommendation | Priority |
 |---|----------------|----------|
-| 1 | **Implement U-Boot boot password** — set `bootdelay=0` and require password for autoboot interruption | Critical |
-| 2 | **Enable FIT signature verification** — use U-Boot's `CONFIG_FIT_SIGNATURE` to verify firmware images cryptographically before flashing | Critical |
-| 3 | **Disable TFTP recovery by default** — require physical authentication (button sequence + serial confirmation) to enter recovery mode | Critical |
-| 4 | **Implement firmware signing** — all firmware updates must be signed with asymmetric key and verified before flash write | Critical |
+| 1 | **Implement U-Boot boot password**: set `bootdelay=0` and require a password to interrupt autoboot | Critical |
+| 2 | **Enable FIT signature verification**: use U-Boot's `CONFIG_FIT_SIGNATURE` to verify firmware images cryptographically before flashing | Critical |
+| 3 | **Disable TFTP recovery by default**: require physical authentication (button sequence + serial confirmation) to enter recovery mode | Critical |
+| 4 | **Implement firmware signing**: all firmware updates must be signed with an asymmetric key and verified before the flash write | Critical |
 
 ### 9.2 Medium-Term (High)
 
 | # | Recommendation | Priority |
 |---|----------------|----------|
-| 5 | **Remove UART headers in production** — depopulate debug pins or require physical soldering to access | High |
-| 6 | **Implement anti-rollback protection** — prevent downgrade to older firmware versions | High |
-| 7 | **Add secure boot chain** — root of trust in ROM, verified boot stages through to OS | High |
-| 8 | **Require multi-factor physical auth for factory reset** — combine button press with serial console confirmation | High |
+| 5 | **Remove UART headers in production**: depopulate the debug pins or require physical soldering to reach them | High |
+| 6 | **Implement anti-rollback protection**: prevent downgrade to older firmware versions | High |
+| 7 | **Add secure boot chain**: root of trust in ROM, verified boot stages through to the OS | High |
+| 8 | **Require multi-factor physical auth for factory reset**: combine the button press with serial console confirmation | High |
 
 ### 9.3 Long-Term (Medium)
 
 | # | Recommendation | Priority |
 |---|----------------|----------|
-| 9 | **Adopt IETF SUIT** — implement Software Updates for IoT protocol for secure OTA updates | Medium |
-| 10 | **Implement NISTIR 8259** — align with NIST IoT cybersecurity capabilities | Medium |
-| 11 | **Add OTP fuse protection** — lock boot configuration in hardware | Medium |
-| 12 | **Implement device attestation** — TPM or equivalent for runtime integrity verification | Medium |
+| 9 | **Adopt IETF SUIT**: implement the Software Updates for IoT protocol for secure OTA updates | Medium |
+| 10 | **Implement NISTIR 8259**: align with NIST IoT cybersecurity capabilities | Medium |
+| 11 | **Add OTP fuse protection**: lock the boot configuration in hardware | Medium |
+| 12 | **Implement device attestation**: TPM or equivalent for runtime integrity verification | Medium |
 
 ---
 
@@ -837,7 +837,7 @@ ssh -o KexAlgorithms=diffie-hellman-group14-sha1 \
 
 **Why this is needed:**
 - The LEDE 17.01.4 Dropbear instance on this build negotiates only legacy SHA-1 KEX groups (`diffie-hellman-group14-sha1`, `diffie-hellman-group1-sha1`)
-- Modern OpenSSH (9.x/10.x) no longer enables SHA-1 KEX by default — `curve25519-sha256` / `ecdh-sha2-nistp256` are the defaults and this Dropbear did not negotiate them
+- Modern OpenSSH (9.x/10.x) no longer enables SHA-1 KEX by default; `curve25519-sha256` / `ecdh-sha2-nistp256` are the defaults and this Dropbear did not negotiate them
 - Only an RSA host key is present in `/etc/dropbear/`
 - Session cipher/MAC were restricted such that the explicit `aes128-ctr` / `hmac-sha1` flags produced a working session
 
@@ -885,13 +885,13 @@ The following public resource was instrumental in getting the v11 target onto cu
 | **mithril** v0.1.3 | https://github.com/nmatt0/mithril | IoT static scanner (secrets / SBOM / CVEs / licenses). Produced the component table in §2 and the local OSV+NVD+KEV+EPSS mirror used for the §8.2 EPSS discussion. Offline by design. |
 
 Additional context used while mapping this finding:
-- OWASP IoT Security Testing Guide (ISTG) — https://github.com/OWASP/owasp-istg
-- OWASP Firmware Security Testing Methodology (FSTM) — https://github.com/scriptingxss/owasp-fstm
-- OWASP IoT Security Verification Standard (ISVS) — https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS
-- NIST IR 8200 — https://nvlpubs.nist.gov/nistpubs/ir/2018/NIST.IR.8200.pdf
+- OWASP IoT Security Testing Guide (ISTG): https://github.com/OWASP/owasp-istg
+- OWASP Firmware Security Testing Methodology (FSTM): https://github.com/scriptingxss/owasp-fstm
+- OWASP IoT Security Verification Standard (ISVS): https://github.com/OWASP/IoT-Security-Verification-Standard-ISVS
+- NIST IR 8200: https://nvlpubs.nist.gov/nistpubs/ir/2018/NIST.IR.8200.pdf
 
 Additional context used while scouting the web attack surface (see §4.0):
-- `cve_test.py`, `cve_test_v2.py` — in-house scripts listed at `scripts/`
+- `cve_test.py`, `cve_test_v2.py`: in-house scripts listed at `scripts/`
 
 ### CVE References (NVD / MITRE)
 
@@ -917,26 +917,26 @@ Additional context used while scouting the web attack surface (see §4.0):
 | Term | Plain-English meaning |
 |------|----------------------|
 | **Router** | The box that connects your home/office network to the internet and shares the connection over Wi-Fi and cables. |
-| **Firmware** | The permanent software installed inside the router that makes it work — its "operating system". It lives on a memory chip even when the power is off. |
+| **Firmware** | The permanent software installed inside the router that makes it work; its "operating system". It lives on a memory chip even when the power is off. |
 | **U-Boot / bootloader** | The very first program that runs when the router switches on. Its job is to load the main firmware. It runs before any security software or login. |
 | **TFTP** | A very simple file-transfer protocol. Used here as the mechanism the router uses to fetch a new firmware file over the network. |
 | **Recovery mode** | A maintenance feature that lets an owner restore a broken router by downloading fresh firmware. In this device it is left completely unprotected. |
 | **Flash / flashing** | The act of writing new firmware to the router's memory chip. |
-| **Arbitrary firmware** | Any software the attacker chooses — not just software made by the manufacturer. |
+| **Arbitrary firmware** | Any software the attacker chooses, not just software made by the manufacturer. |
 | **UART / serial console** | A small electrical debug port on the circuit board, used by engineers. Here it is exposed, unlabeled, on the board edge with no protection. |
-| **Root access / root shell** | The highest possible level of control over a device — equivalent to having the owner's master key. |
+| **Root access / root shell** | The highest possible level of control over a device; equivalent to having the owner's master key. |
 | **Backdoor** | Hidden software installed by an attacker that lets them back into the device later. |
 | **Pivoting / lateral movement** | Using the compromised router as a stepping stone to attack other devices on the same network. |
 | **SSH** | A secure way to log into a device over a network. Used here to demonstrate the attacker's interactive control of the router. |
-| **SBOM** | A "Software Bill of Materials" — an inventory list of every software component inside the device. |
+| **SBOM** | A "Software Bill of Materials": an inventory list of every software component inside the device. |
 | **CVSS** | A universal scoring system (0–10) for how severe a security problem is. 8.6 = Critical. |
 | **EPSS** | A system that estimates the probability (0–100%) that a vulnerability will be exploited in the wild in the next 30 days. |
 | **ISVS** | An industry checklist (OWASP) of security requirements for internet-connected devices. |
 | **Authentication** | Proving who you are (e.g., entering a password). This attack needs none. |
-| **Firmware signing** | Digitally marking software so the device can verify who made it. This device does not do it — a core reason the attack works. |
+| **Firmware signing** | Digitally marking software so the device can verify who made it. This device does not do it, and that is why the attack works. |
 | **Secure boot** | A chain of checks from power-on to full startup ensuring only trusted software runs. Not implemented here. |
 | **Anti-rollback** | A guard that stops an attacker from downgrading the router to older, vulnerable software. Not implemented here. |
-| **Layer-2 (L2) network** | The physical, direct-link level of networking — the cable network the router's Ethernet port participates in. Required for TFTP. |
+| **Layer-2 (L2) network** | The physical, direct-link level of networking; the cable network the router's Ethernet port participates in. Required for TFTP. |
 
 ---
 
