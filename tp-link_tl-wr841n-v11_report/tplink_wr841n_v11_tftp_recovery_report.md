@@ -60,7 +60,7 @@ The root cause is that the router's built-in "recovery mode" (a factory feature 
 | **Manufacturer** | TP-Link Technologies Co., Ltd. |
 | **Model** | TL-WR841N |
 | **Hardware Version** | v11.0 |
-| **Serial Number** | [redacted]; S/N `2167895011070 EU/11.0` withheld; refer to back sticker image |
+| **Serial Number** | `2167895011070 EU/11.0` |
 | **FCC ID** | **TE7WR841NXV11** (printed on rear label) |
 | **IC (ISED, Canada)** | **8853A-WR841NXV11** (label transcription `8853A-WR841NX`) |
 | **Certification** | FCC ID + IC printed on rear label; CE marking on PCB silkscreen |
@@ -75,7 +75,7 @@ The root cause is that the router's built-in "recovery mode" (a factory feature 
 | **MAC Address (label)** | 98-DE-D0-D4-05-C6; factory MAC printed on rear label; base for default SSID |
 | **MAC Address (U-Boot env)** | ba:be:fa:ce:08:41; placeholder MAC used by U-Boot for eth0/eth1 (differs from label MAC; SSID derives from label MAC) |
 | **Power Supply** | 9 V DC, 0.6 A (label: 9V ≈ 0.6A) |
-| **Default Access** | http://tplinkwifi.net → 192.168.0.1, admin/admin (default, [redacted] in evidence) |
+| **Default Access** | http://tplinkwifi.net → 192.168.0.1, admin/admin (default credentials) |
 | **LAN IP (stock)** | 192.168.0.1/24 |
 | **LAN IP (OpenWrt)** | 192.168.1.1/24 (br-lan) |
 
@@ -113,10 +113,10 @@ The root cause is that the router's built-in "recovery mode" (a factory feature 
 
 ### 1.1.1 Unit Identification — Back / Specification Sticker
 
-The device's information sticker on the underside of the case is the primary source of unit identification. It carries the model name (TL-WR841N), hardware version (v11), full FCC ID (**TE7WR841NXV11**), IC number (**8853A-WR841NX**, canonical ISED form `8853A-WR841NXV11`), power rating (9 V ≈ 0.6 A), default-access details (http://tplinkwifi.net → 192.168.0.1, admin/admin), serial number, factory MAC (**98-DE-D0-D4-05-C6**), default wireless password/PIN, and default SSID (`TP-LINK_05C6`, derived from the last four hex digits of the label MAC).
+The device's information sticker on the underside of the case is the primary source of unit identification. It carries the model name (TL-WR841N), hardware version (v11), full FCC ID (**TE7WR841NXV11**), IC number (**8853A-WR841NX**, canonical ISED form `8853A-WR841NXV11`), power rating (9 V ≈ 0.6 A), default-access details (http://tplinkwifi.net → 192.168.0.1, admin/admin), serial number, factory MAC (**98-DE-D0-D4-05-C6**), default wireless password/PIN (`01714098`), and default SSID (`TP-LINK_05C6`, derived from the last four hex digits of the label MAC).
 
-> **IMAGE PLACEHOLDER:** `scripts/images/router_back_sticker_redacted.jpg`
-> *Under-casing specification sticker. Sensitive fields (serial number, full MAC, default credentials, wireless password/PIN) redacted in the source photo; FCC ID, IC, model, and power rating left readable.*
+> **IMAGE PLACEHOLDER:** `scripts/images/router_back_sticker.jpg`
+> *Under-casing specification sticker. Full label shown: FCC ID, IC, model, hardware version, power rating, serial number, factory MAC, default access, and wireless password/PIN.*
 
 The FCC ID is directly queryable in the **FCC OET authorization database** (`https://fcc.report` / `https://apps.fcc.gov/oetcf/eas/reports/GenericSearch.cfm`) using `TE7WR841NXV11`, and the IC in the ISED (Innovation, Science and Economic Development Canada) database using `8853A-WR841NXV11`. Verification performed 2026-09-10 confirms the grant: **TP-Link Technologies Co., Ltd.**, application `WR841NXV11`, sold as a "300Mbps Wireless N Router", DTS (Digital Transmission System, 2412–2462 MHz), **granted 2015-11-25**, test firm Bureau Veritas (Taoyuan). The FCC application data independently confirms the platform (QCA9533, 2.4 GHz 802.11n) and hardware revision of the unit under test. These certification identifiers are regulatory public records, not secret material, but they give a third-party enumerator an independent confirmation of the exact product (platform, radio, hardware revision) that matches the sticker and the PCB silkscreen markings. CE marking also appears on the PCB silkscreen alongside the FCC/IC numbers.
 
@@ -940,7 +940,7 @@ Additional context used while scouting the web attack surface (see §4.0):
 
 ---
 
-**Report Author:** Automated IoT Security Assessment
+**Report Author:** gluppler
 
 **Framework References:** OWASP ISTG v1.0, OWASP FSTM v1.0, OWASP ISVS v1.0.0-RC2, NISTIR 8200
 
