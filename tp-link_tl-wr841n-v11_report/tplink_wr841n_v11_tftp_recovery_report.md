@@ -1,7 +1,9 @@
 # TP-Link TL-WR841N v11 — U-Boot TFTP Recovery Arbitrary Firmware Flash
 
 **Report Type:** Proof-of-Concept — IoT Hardware Security Assessment
+
 **Date:** September 10, 2026
+
 **Classification:** Confidential — Authorized Testing Only
 
 ---
@@ -23,6 +25,7 @@ The root cause is that the router's built-in "recovery mode" — a factory featu
 **What should you do?** The vendor no longer supports this model, so the durable fix is to **replace the device**. If it must stay in service, keep it in a physically secured location (locked room / cabinet), segment it away from sensitive systems, and do not rely on it as a security boundary.
 
 **CVSS 4.0:** 8.6 (Critical)
+
 **ISVS Level:** L2/L3 non-conformance (V3.1.1, V5.1.1)
 
 ---
@@ -938,6 +941,9 @@ Additional context used while scouting the web attack surface (see §4.0):
 ---
 
 **Report Author:** Automated IoT Security Assessment
+
 **Framework References:** OWASP ISTG v1.0, OWASP FSTM v1.0, OWASP ISVS v1.0.0-RC2, NISTIR 8200
+
 **Tools Used:** CP2102 USB-UART, atftpd, OpenSSH 10.4p1, stty, xxd, moria v0.1.0, mithril v0.1.3, Ghidra, strings, hashcat, OpenSSL, CyberChef, LEDE 17.01.4
+
 **Classification:** Confidential — Authorized Testing Only
