@@ -33,7 +33,7 @@
 #   - OpenWrt LEDE 17.01.4 factory image (or stock firmware for revert)
 #
 # Tested on: Kali Linux VM with libvirt bridged networking (virbr0 + eno1)
-# Report:    scripts/tplink_wr841n_v11_tftp_recovery_report.md
+# Report:    tplink_wr841n_v11_tftp_recovery_report.md
 # =============================================================================
 
 set -euo pipefail
