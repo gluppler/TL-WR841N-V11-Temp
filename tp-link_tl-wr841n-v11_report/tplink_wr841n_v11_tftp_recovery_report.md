@@ -124,7 +124,7 @@ Note: the **factory MAC on the label (98-DE-D0-D4-05-C6)** differs from the MAC 
 
 ### 1.1.2 Exterior Ports & Indicators (Front/Rear Panels)
 
-> **IMAGE PLACEHOLDER:** `scripts/images/ports_panel.jpg`
+![ports_panel](images/ports_panel.jpg)
 > *Exterior ports and controls. Callouts:*
 
 | Port / Control | Type | Notes |
@@ -140,7 +140,7 @@ Note: the **factory MAC on the label (98-DE-D0-D4-05-C6)** differs from the MAC 
 
 Board base, top surface, shield cans removed/reflected where present (teardown photographed from both ends; UART header pins on left/right of frame):
 
-> **IMAGE PLACEHOLDER:** `scripts/images/pcb_annotated.png`
+![pcb_annotated](images/pcb_annotated.jpg)
 > *Base PCB after teardown, two angles with component callouts. Annotated highlights:*
 
 | Callout | Component | Silkscreen / Marking | Notes |
@@ -157,7 +157,7 @@ The UART header is left populated on the production board: no depopulation, no s
 
 ### 1.1.4 UART Hook-Up (No-Solder Method)
 
-> **IMAGE PLACEHOLDER:** `scripts/images/uart_cp2102_hooked.jpg`
+![uart_cp2102_hooked](images/uart_cp2102_hooked.jpg)
 > *CP2102 USB-UART adapter leaned against the exposed UART pins, held in place by friction; no soldering was performed.*
 
 Connect as follows. **The CP2102 is not soldered**; the header pins are long enough that the adapter's female jumper leads grip the pins by friction alone during the whole test:
